@@ -1,0 +1,43 @@
+#lang scheme
+
+;; newtons method iteration
+; base function
+(define (sqrt-itr guess x)
+  (if (good-enough? guess x)
+      guess
+      (sqrt-itr (improve guess x) x )
+      )
+  )
+
+; imporve function
+(define (improve guess x)
+  (average guess (/ x guess))
+  )
+(define (average x y)
+  (/ (+ x y) 2)
+  )
+
+; good enough function
+(define (good-enough? guess x)
+  (< (abs (- (square guess) x)) 0.001))
+
+; math functions
+(define (abs x)
+  (if (< x 0) (- x) x)
+  )
+(define (square x) (* x x))
+
+; useful function
+(define (sqrt x)
+  (sqrt-itr 1.0 x)
+  )
+
+9
+(sqrt 9)
+
+(+ 100 37)
+(sqrt (+ 100 37))
+
+(sqrt (+ (sqrt 2) (sqrt 3)))
+
+(square (sqrt 1000))
