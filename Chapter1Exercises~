@@ -1,0 +1,9 @@
+#lang scheme
+; exercise 1.11 : tree function to compute f(x) = {x if x < 3} {f(x-1) + 2f(x-2) + 3f(x-3) if x >= 3}
+(define (oneEleven x)
+  (if (< x 3)
+      x
+      (+ (oneEleven (- x 1)) (* 2 (oneEleven (- x 2))) (* 3 (oneEleven (- x 3))))))
+
+(oneEleven 2)
+        
