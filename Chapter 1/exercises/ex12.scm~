@@ -1,9 +1,0 @@
-#lang scheme
-
-(define (pascal row col)
-  (cond ((< row col) #f)
-        ((or (= 0 col) (= row col)) 1)
-        (else #t)))
-
-(pascal 0 0)
-(pascal 1 5)
