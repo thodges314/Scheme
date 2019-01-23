@@ -19,11 +19,11 @@
         (expt-iter b (- counter 1) (* b product))))
   (expt-iter b n 1))
 
-(expt-i 2 800000)
+;(expt-i 2 800000)
 
 ; these are both too fast even with large numbers to detect time lags ^^^^
 
-;; fast-exp
+;; fast-expt
 ;; uses b^n = (b^(n/2))^2 is n is even, b^n = b * b^(n-1) if n is odd
 ; finds 2^8,000,000 in about 4 seconds - finds 2^800,000 in less than 1 second
 (define (fast-expt b n)
@@ -36,3 +36,16 @@
     (= (remainder n 2) 0))
 
 ;(fast-expt 2 800000)
+
+;; fast-expt-i
+;;
+; takes about the same abount of time as fast-expt but with constant storage requirements
+
+(define (fast-expt-i b n)
+  (define (expt-iter b n a)
+    (cond ((= n 0) a)
+          ((even? n) (expt-iter (square b) (/ n 2) a))
+          (else (expt-iter b (- n 1) (* a b)))))
+  (expt-iter b n 1))
+
+(fast-expt-i 2 8000000)
